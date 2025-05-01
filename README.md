@@ -1,7 +1,5 @@
 # Michelin Restaurants API
 
-![Michelin Logo](https://www.michelin.com/wp-content/uploads/2018/09/michelin-logo-2018.png)
-
 ## Table of Contents
 1. [Project Overview](#project-overview)
 2. [Technology Stack](#technology-stack)
