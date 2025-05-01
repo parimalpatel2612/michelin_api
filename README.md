@@ -102,3 +102,24 @@ ReDoc: http://localhost:8000/redoc
 3. Create Restaurant
    ```
    POST /restaurants
+  
+   Request
+   {
+     "name": "string",
+     "opening_hours": "Mon-Fri: 11:00-22:00",
+     "cuisine": "string",
+     "has_bar": false,
+     "district": "string",
+     "price_range": 3,
+     "michelin_stars": 0,
+     "team_members": [
+      {
+      "name": "string",
+      "title":"string"
+      },{
+      "name": "string",
+      "title":"string"
+      }
+   #can add more team
+   ]
+   }
