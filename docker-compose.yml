@@ -9,6 +9,5 @@ services:
       - .:/app
     environment:
       - APP_ENV=production
-      # SQLite will store the database file in your project directory
       - DATABASE_URL=sqlite:///./sql_app.db
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000

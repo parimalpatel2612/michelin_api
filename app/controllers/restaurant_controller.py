@@ -15,13 +15,7 @@ def list_restaurants(
     stars: int = Query(None, ge=0, le=3),
     db: Session = Depends(get_db)
 ):
-    """
-    Get all restaurants with optional filters:
-    - district: Filter by location
-    - cuisine: Filter by cuisine type
-    - price_range: 1-3 scale
-    - stars: Michelin star rating (0-3)
-    """
+
     service = RestaurantService(db)
     return service.get_restaurants(
         district=district,
