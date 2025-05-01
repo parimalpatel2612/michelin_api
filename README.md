@@ -1,51 +1,57 @@
 # Michelin Restaurants API
 
-<div align="center">
-  <img src="https://www.michelin.com/wp-content/uploads/2018/09/michelin-logo-2018.png" width="300" alt="Michelin Logo">
-</div>
+![Michelin Logo](https://www.michelin.com/wp-content/uploads/2018/09/michelin-logo-2018.png)
 
 ## Table of Contents
-- [Project Overview](#project-overview)
-- [Technology Stack](#technology-stack)
-- [Setup & Installation](#setup--installation)
-- [API Endpoints](#api-endpoints)
-- [Testing](#testing)
-- [Project Structure](#project-structure)
-- [Future Improvements](#future-improvements)
-- [Production Considerations](#production-considerations)
+1. [Project Overview](#project-overview)
+2. [Technology Stack](#technology-stack)
+   - [Framework & Library Choices](#framework--library-choices)
+3. [Setup & Installation](#setup--installation)
+4. [API Documentation](#api-documentation)
+   - [Endpoint Samples](#endpoint-samples)
+5. [Testing](#testing)
+6. [Future Improvements](#future-improvements)
+7. [Production Considerations](#production-considerations)
+8. [Assumptions](#assumptions)
 
 ## Project Overview
-A RESTful API for managing Michelin-starred restaurant information including:
-- Restaurant details (cuisine, opening hours, pricing)
-- Team member information
-- Location and district data
-- Michelin star ratings
+REST API for managing Michelin-starred restaurant information with:
+- Restaurant details (cuisine, hours, pricing)
+- Staff information
+- Location data
+- Star rating system
 
 ## Technology Stack
 
-### Framework: FastAPI
-**Why FastAPI?**
+### Framework & Library Choices
+
+**FastAPI**  
 ✅ **Benefits**:
-- High performance (on par with NodeJS/Go)
-- Automatic interactive API documentation
-- Easy-to-use with Python type hints
-- Built-in data validation
-- Async support
+- Automatic OpenAPI/Swagger docs
+- 300% faster than Flask in benchmarks
+- Native async support
+- Built-in data validation via Pydantic
+- Excellent IDE support with type hints
 
 ⚠️ **Drawbacks**:
-- Smaller ecosystem compared to Django
-- Less built-in admin functionality
+- Smaller ecosystem than Django
+- Fewer built-in admin tools
+
+**SQLAlchemy ORM**  
+✅ **Benefits**:
+- Mature Python ORM (since 2005)
+- Supports multiple database backends
+- Expressive query API
+
+**Testing Tools**  
+- pytest: Clean test syntax
+- TestClient: FastAPI's HTTP client
+- Coverage.py: Test coverage analysis
 
 **Assumptions**:
-- We prioritize API performance over admin interfaces
-- Async capabilities may be useful for future scaling
-- Our team is comfortable with Python type hints
-
-### Database: SQLAlchemy + SQLite (Development)
-**Why SQLAlchemy?**
-- Most mature Python ORM
-- Supports multiple database backends
-- Excellent relationship handling
+- Prioritize API performance over admin UI
+- Team is comfortable with async/await
+- Will scale to 10,000+ restaurants
 
 ## Setup & Installation
 
@@ -53,14 +59,12 @@ A RESTful API for managing Michelin-starred restaurant information including:
 - Python 3.9+
 - pip package manager
 
-### Step-by-Step Setup
-
 ```bash
-# 1. Clone the repository
-git clone https://github.com/yourusername/michelin-api.git
+# 1. Clone repository
+git clone https://github.com/parimalpatel2612/michelin_api.git
 cd michelin-api
 
-# 2. Create and activate virtual environment
+# 2. Set up virtual environment
 python -m venv .venv
 source .venv/bin/activate  # Linux/Mac
 # .venv\Scripts\activate  # Windows
@@ -71,5 +75,32 @@ pip install -r requirements.txt
 # 4. Initialize database
 python -m app.utils.init_db
 
-# 5. Run the development server
+# 5. Run development server
 uvicorn app.main:app --reload
+````
+
+## API Documentation
+Access after running:
+
+Swagger UI: http://localhost:8000/docs
+
+ReDoc: http://localhost:8000/redoc
+
+## API Endpoints
+1. List Restaurants
+   ````
+   GET /restaurants
+
+   Query Parameters:
+   district: Filter by district
+   cuisine: Filter by cuisine type
+   price_range: Filter by price range (1-4)
+   stars: Filter by Michelin stars (1-3)
+
+2. Get Restaurant Details 
+   ```
+   GET /restaurants/{restaurant_id}
+
+3. Create Restaurant
+   ```
+   POST /restaurants
